@@ -16,7 +16,7 @@ const attributes = {
 /** @param {import('sequelize').Sequelize} sequelize */
 
 module.exports = (sequelize, _DataTypes) => {
-  const PostCategory = sequelize.define('PostCategory', {}, { 
+  const PostCategory = sequelize.define('PostCategory', attributes, {
     tableName: 'PostCategories',
     timestamps: false,
   });
