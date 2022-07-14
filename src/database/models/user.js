@@ -2,7 +2,7 @@ const { DataTypes } = require('sequelize');
 
 const attributes = {
   id: {
-    type: DataTypes.STRING,
+    type: DataTypes.INTEGER,
     primaryKey: true,
     autoIncrement: true,
   },
@@ -24,8 +24,8 @@ const attributes = {
 
 module.exports = (sequelize) => {
   const User = sequelize.define('User', attributes, {
-    timestamps: false,
     tableName: 'Users',
+    timestamps: false,
   });
 
   User.associate = (models) => {
