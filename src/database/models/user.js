@@ -20,6 +20,8 @@ const attributes = {
   },
 };
 
+/** @param {import('sequelize').Sequelize} sequelize */
+
 module.exports = (sequelize) => {
   const User = sequelize.define('User', attributes, {
     timestamps: false,
