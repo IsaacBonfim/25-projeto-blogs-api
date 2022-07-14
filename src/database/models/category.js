@@ -14,10 +14,10 @@ const attributes = {
 /** @param {import('sequelize').Sequelize} sequelize */
 
 module.exports = (sequelize) => {
-  const Categorie = sequelize.define('Categorie', attributes, {
+  const Category = sequelize.define('Category', attributes, {
     tableName: 'Categories',
     timestamps: false,
   });
   
-  return Categorie;
+  return Category;
 };
