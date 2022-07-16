@@ -50,8 +50,26 @@ const getAllUsers = async () => {
   return users;
 };
 
+const getUserById = async (id) => {
+  const user = await model.User.findOne({
+    where: { id },
+    raw: true,
+  });
+
+  if (!user) {
+    const error = new Error('User does not exist');
+    error.statusCode = 404;
+    throw error;
+  }
+
+  const { password, ...newUser } = user;
+
+  return newUser;
+};
+
 module.exports = {
   userValidation,
   userCreation,
   getAllUsers,
+  getUserById,
 };
