@@ -1,3 +1,4 @@
+const joi = require('joi');
 const jwt = require('jsonwebtoken');
 
 const tokenMaker = async (user) => {
@@ -7,4 +8,27 @@ const tokenMaker = async (user) => {
   return token;
 };
 
-module.exports = tokenMaker;
+const tokenValidation = async (string) => {
+  const schema = joi.string().required();
+  const result = schema.validate(string);
+
+  if (result.error) {
+    const error = new Error('Token not found');
+    error.statusCode = 401;
+    throw error;
+  }
+
+  return result.value;
+};
+
+const tokenVerification = async (token) => {
+  const { data } = jwt.verify(token, process.env.JWT_SECRET);
+
+  return data;
+};
+
+module.exports = {
+  tokenMaker,
+  tokenValidation,
+  tokenVerification,
+};
