@@ -9,4 +9,9 @@ module.exports = {
 
     res.status(201).json({ token });
   },
+  getAllUsers: async (_req, res) => {
+    const users = await service.getAllUsers();
+
+    res.status(200).json(users);
+  },
 };
