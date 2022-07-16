@@ -14,4 +14,10 @@ module.exports = {
 
     res.status(200).json(users);
   },
+  getUserById: async (req, res) => {
+    const { id } = req.params;
+    const user = await service.getUserById(id);
+
+    res.status(200).json(user);
+  },
 };
