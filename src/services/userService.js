@@ -41,7 +41,17 @@ const userCreation = async ({ displayName, email, password, image }) => {
   return newUser;
 };
 
+const getAllUsers = async () => {
+  const users = await model.User.findAll({
+    raw: true,
+    attributes: { exclude: ['password'] },
+  });
+
+  return users;
+};
+
 module.exports = {
   userValidation,
   userCreation,
+  getAllUsers,
 };
