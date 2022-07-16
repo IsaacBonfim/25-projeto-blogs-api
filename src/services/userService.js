@@ -28,7 +28,7 @@ const userCreation = async ({ displayName, email, password, image }) => {
 
   if (userCheck) {
     const error = new Error('User already registered');
-    error.statuCode = 409;
+    error.statusCode = 409;
     throw error;
   }
 
