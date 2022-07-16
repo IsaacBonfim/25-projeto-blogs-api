@@ -18,7 +18,7 @@ const loginValidation = async (obj) => {
   return login.value;
 };
 
-const userValidation = async ({ email, password }) => {
+const loginUserValidation = async ({ email, password }) => {
   const user = await model.User.findOne({
     where: { email },
     raw: true,
@@ -37,5 +37,5 @@ const userValidation = async ({ email, password }) => {
 
 module.exports = {
   loginValidation,
-  userValidation,
+  loginUserValidation,
 };
