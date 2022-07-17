@@ -15,6 +15,13 @@ const newCategory = async (name) => {
   return category;
 };
 
+const getCategory = async () => {
+  const categories = await model.Category.findAll({ raw: true });
+
+  return categories;
+};
+
 module.exports = {
   newCategory,
+  getCategory,
 };
