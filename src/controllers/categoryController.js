@@ -7,4 +7,9 @@ module.exports = {
 
     res.status(201).json(category);
   },
+  getCategory: async (_req, res) => {
+    const categories = await service.getCategory();
+
+    res.status(200).json(categories);
+  },
 };
