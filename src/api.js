@@ -4,6 +4,7 @@ require('express-async-errors');
 
 const login = require('./routes/loginRoute');
 const user = require('./routes/userRoute');
+const category = require('./routes/categoryRoute');
 const error = require('./middlewares/erroMiddleware');
 
 const app = express();
@@ -13,6 +14,8 @@ app.use(express.json());
 app.use('/login', login);
 
 app.use('/user', user);
+
+app.use('/categories', category);
 
 app.use(error);
 
