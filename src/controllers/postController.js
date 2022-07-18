@@ -24,4 +24,15 @@ module.exports = {
 
     res.status(200).json(post);
   },
+  updatePost: async (req, res) => {
+    const { id } = req.params;
+    const { id: userId } = req.user;
+    
+    const validated = await service.updateValidation(req.body);
+    const [post] = await service.updatePost({ ...validated, id, userId });
+
+    const newPost = await service.getPostById(post);
+
+    res.status(200).json(newPost);
+  },
 };

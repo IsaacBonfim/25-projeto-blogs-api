@@ -73,7 +73,7 @@ const updateValidation = async (obj) => {
     throw error;
   }
 
-  return update;
+  return update.value;
 };
 
 const updatePost = async ({ title, content, id, userId }) => {
