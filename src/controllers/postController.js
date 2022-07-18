@@ -1,15 +1,21 @@
 const service = require('../services/postService');
-const categoryFc = require('../helpers/categoryFunctions');
+const helper = require('../helpers/helperFunctions');
 
 module.exports = {
   newPost: async (req, res) => {
     const { id } = req.user;
     const post = await service.postValidation(req.body);
 
-    await categoryFc.validateCategory(post.categoryIds);
+    await helper.validateCategory(post.categoryIds);
 
     const newPost = await service.newPost({ id, ...post });
 
     res.status(201).json(newPost);
+  },
+  getAllPosts: async (_req, res) => {
+    const postList = await service.getAllPosts();
+    const posts = await Promise.all(postList.map((id) => helper.postSearch(id)));
+
+    res.status(200).json(posts);
   },
 };
