@@ -11,4 +11,7 @@ user.route('/')
 user.route('/:id')
   .get(tokenMd, controller.getUserById);
 
+user.route('/me')
+  .delete(tokenMd, controller.deleteUser);
+
 module.exports = user;
