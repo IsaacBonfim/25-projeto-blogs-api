@@ -52,6 +52,8 @@ const getAllPosts = async () => {
   return posts;
 };
 
+//
+
 module.exports = {
   postValidation,
   newPost,
