@@ -20,4 +20,13 @@ module.exports = {
 
     res.status(200).json(user);
   },
+  deleteUser: async (req, res) => {
+    const { id } = req.user;
+
+    await service.deleteUser(id);
+
+    req.user = '';
+
+    res.status(204).end();
+  },
 };
