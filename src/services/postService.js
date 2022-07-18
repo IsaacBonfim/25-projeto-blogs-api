@@ -41,7 +41,19 @@ const newPost = async ({ id, title, content, categoryIds }) => {
   return post;
 };
 
+const getAllPosts = async () => {
+  const postList = await model.BlogPost.findAll(
+    { attribute: { include: ['id'] } },
+    { raw: true },
+  );
+
+  const posts = postList.map((post) => post.id);
+
+  return posts;
+};
+
 module.exports = {
   postValidation,
   newPost,
+  getAllPosts,
 };
