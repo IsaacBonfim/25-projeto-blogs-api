@@ -43,4 +43,11 @@ module.exports = {
 
     res.status(204).end();
   },
+  searchPost: async (req, res) => {
+    const { q } = req.query;
+    const ids = await service.searchPost(q);
+    const posts = await Promise.all(ids.map((id) => service.getPostById(id)));
+
+    res.status(200).json(posts);
+  },
 };
