@@ -91,6 +91,19 @@ const updatePost = async ({ title, content, id, userId }) => {
   return post;
 };
 
+const deletePost = async (id, userId) => {
+  const post = await model.BlogPost.findOne(
+    { where: { id }, raw: true },
+  );
+
+  helper.postVerify(post, userId);
+
+  await model.PostCategory.destroy({ where: { postId: id } });
+  await model.BlogPost.destroy({ where: { id }, raw: true });
+
+  return post;
+};
+
 module.exports = {
   postValidation,
   newPost,
@@ -98,4 +111,5 @@ module.exports = {
   getPostById,
   updateValidation,
   updatePost,
+  deletePost,
 };

@@ -54,7 +54,22 @@ const postSearch = async (id) => {
   return post;
 };
 
+const postVerify = (post, userId) => {
+  if (!post) {
+    const error = new Error('Post does not exist');
+    error.statusCode = 404;
+    throw error;
+  }
+
+  if (post.userId !== userId) {
+    const error = new Error('Unauthorized user');
+    error.statusCode = 401;
+    throw error;
+  }
+};
+
 module.exports = {
   validateCategory,
   postSearch,
+  postVerify,
 };
