@@ -106,12 +106,13 @@ const deletePost = async (id, userId) => {
 };
 
 const searchPost = async (search) => {
-  const postList = await model.BlogPost.findAll(
-    { where: { [Op.or]: 
-      [{ title: { [Op.like]: `%${search}%` } },
-       { content: { [Op.like]: `%${search}%` } }],
-    } },
-  );
+  const postList = await model.BlogPost.findAll({
+    where: { [Op.or]: [
+        { title: { [Op.like]: `%${search}%` } },
+        { content: { [Op.like]: `%${search}%` } },
+      ],
+    },
+  });
 
   const posts = postList.map(({ id }) => id);
 

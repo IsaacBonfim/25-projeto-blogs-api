@@ -8,6 +8,9 @@ post.route('/')
   .post(tokenMd, controller.newPost)
   .get(tokenMd, controller.getAllPosts);
 
+post.route('/search')
+  .get(tokenMd, controller.searchPost);
+
 post.route('/:id')
   .get(tokenMd, controller.getPostById)
   .put(tokenMd, controller.updatePost)
