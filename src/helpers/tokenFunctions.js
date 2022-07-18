@@ -9,8 +9,8 @@ const tokenMaker = async (user) => {
 };
 
 const tokenValidation = async (string) => {
-  const schema = joi.string().required();
-  const result = schema.validate(string);
+  const validation = joi.string().required();
+  const result = validation.validate(string);
 
   if (result.error) {
     const error = new Error('Token not found');

@@ -2,12 +2,12 @@ const joi = require('joi');
 const model = require('../database/models');
 
 const loginValidation = async (obj) => {
-  const schema = joi.object({
+  const validation = joi.object({
     email: joi.string().email().required(),
     password: joi.string().min(6).required(),
   });
 
-  const login = schema.validate(obj);
+  const login = validation.validate(obj);
 
   if (login.error) {
     const error = new Error('Some required fields are missing');

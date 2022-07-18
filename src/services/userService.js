@@ -2,14 +2,14 @@ const joi = require('joi');
 const model = require('../database/models');
 
 const userValidation = async (obj) => {
-  const schema = joi.object({
+  const validation = joi.object({
     displayName: joi.string().min(8),
     email: joi.string().email(),
     password: joi.string().min(6),
     image: joi.string(),
   });
 
-  const user = schema.validate(obj);
+  const user = validation.validate(obj);
 
   if (user.error) {
     const error = new Error(user.error.message);
