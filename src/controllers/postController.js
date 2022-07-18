@@ -35,4 +35,12 @@ module.exports = {
 
     res.status(200).json(newPost);
   },
+  deletePost: async (req, res) => {
+    const { id } = req.params;
+    const { id: userId } = req.user;
+
+    await service.deletePost(id, userId);
+
+    res.status(204).end();
+  },
 };
