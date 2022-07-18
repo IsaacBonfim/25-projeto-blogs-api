@@ -1,4 +1,5 @@
 const Sequelize = require('sequelize');
+const { Op } = require('sequelize');
 const joi = require('joi');
 const model = require('../database/models');
 const config = require('../database/config/config');
@@ -104,6 +105,19 @@ const deletePost = async (id, userId) => {
   return post;
 };
 
+const searchPost = async (search) => {
+  const postList = await model.BlogPost.findAll(
+    { where: { [Op.or]: 
+      [{ title: { [Op.like]: `%${search}%` } },
+       { content: { [Op.like]: `%${search}%` } }],
+    } },
+  );
+
+  const posts = postList.map(({ id }) => id);
+
+  return posts;
+};
+
 module.exports = {
   postValidation,
   newPost,
@@ -112,4 +126,5 @@ module.exports = {
   updateValidation,
   updatePost,
   deletePost,
+  searchPost,
 };
