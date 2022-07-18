@@ -2,6 +2,7 @@ const Sequelize = require('sequelize');
 const joi = require('joi');
 const model = require('../database/models');
 const config = require('../database/config/config');
+const helper = require('../helpers/helperFunctions');
 
 const sequel = new Sequelize(config.development);
 
@@ -52,10 +53,15 @@ const getAllPosts = async () => {
   return posts;
 };
 
-//
+const getPostById = async (id) => {
+  const post = helper.postSearch(id);
+
+  return post;
+};
 
 module.exports = {
   postValidation,
   newPost,
   getAllPosts,
+  getPostById,
 };
