@@ -18,4 +18,10 @@ module.exports = {
 
     res.status(200).json(posts);
   },
+  getPostById: async (req, res) => {
+    const { id } = req.params;
+    const post = await service.getPostById(id);
+
+    res.status(200).json(post);
+  },
 };
