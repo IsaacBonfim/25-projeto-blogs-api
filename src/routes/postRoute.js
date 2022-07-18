@@ -10,6 +10,7 @@ post.route('/')
 
 post.route('/:id')
   .get(tokenMd, controller.getPostById)
-  .put(tokenMd, controller.updatePost);
+  .put(tokenMd, controller.updatePost)
+  .delete(tokenMd, controller.deletePost);
 
 module.exports = post;
