@@ -59,9 +59,43 @@ const getPostById = async (id) => {
   return post;
 };
 
+const updateValidation = async (obj) => {
+  const validation = joi.object({
+    title: joi.string().required(),
+    content: joi.string().required(),
+  });
+
+  const update = validation.validate(obj);
+
+  if (update.error) {
+    const error = new Error('Some required fields are missing');
+    error.statusCode = 400;
+    throw error;
+  }
+
+  return update;
+};
+
+const updatePost = async ({ title, content, id, userId }) => {
+  if (Number(id) !== userId) {
+    const error = new Error('Unauthorized user');
+    error.statusCode = 401;
+    throw error;
+  }
+
+  const post = await model.BlogPost.update(
+    { title, content, updated: new Date() },
+    { where: { id }, raw: true },
+  );
+
+  return post;
+};
+
 module.exports = {
   postValidation,
   newPost,
   getAllPosts,
   getPostById,
+  updateValidation,
+  updatePost,
 };
